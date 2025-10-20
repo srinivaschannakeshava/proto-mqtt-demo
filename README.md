@@ -1,6 +1,6 @@
 # proto-mqtt-demo — generate clients
 
-```mermaid
+```
 flowchart LR
   A[proto/simple.proto] --> B{Generator scripts}
   B --> C[gen/java]
