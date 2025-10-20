@@ -1,0 +1,22 @@
+<main class="main">
+	<div style="padding:1rem;">
+		<h1>Hello, {{ title() }}</h1>
+		<p>Connection: <strong>{{ connectionState() }}</strong></p>
+		<p>{{ lastMessageProto() ? ('Last message: ' + lastMessageProto()) : 'No messages yet.' }}</p>
+		<p>{{ lastMessageConverted() ? ('Last message: ' + lastMessageConverted()) : 'No converted messages yet.' }}</p>
+
+		<section style="margin-top:1rem; border-top:1px solid #eee; padding-top:1rem; max-width:420px;">
+			<label>
+				Name
+				<input [value]="nameInput()" (input)="nameInput.set($any($event.target).value)" />
+			</label>
+			<label style="margin-left:1rem;">
+				ID
+				<input type="number" [value]="idInput()" (input)="idInput.set(+($any($event.target).value))" style="width:6rem" />
+			</label>
+			<button (click)="publishSimple()" style="margin-left:1rem;">Publish</button>
+		</section>
+	</div>
+</main>
+
+<router-outlet />

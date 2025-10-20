@@ -1,0 +1,29 @@
+// simple.proto
+// Minimal example using proto3: request/response and a service.
+
+syntax = "proto3";
+
+package demo;
+
+option go_package = "github.com/example/proto-mqtt-demo/proto;proto";
+
+// SimpleRequest is a minimal request message.
+message SimpleRequest {
+  // The name of the caller.
+  string name = 1;
+
+  // An optional numeric id.
+  int32 id = 2;
+}
+
+// SimpleResponse wraps a single reply message.
+message SimpleResponse {
+  // Human-readable reply.
+  string message = 1;
+}
+
+// SimpleService demonstrates a single unary RPC.
+service SimpleService {
+  // SayHello returns a greeting for the provided SimpleRequest.
+  rpc SayHello (SimpleRequest) returns (SimpleResponse);
+}

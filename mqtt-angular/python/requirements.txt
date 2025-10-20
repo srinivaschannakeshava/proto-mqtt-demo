@@ -1,0 +1,5 @@
+paho-mqtt==2.1.0
+# Python dependencies useful for generating and using gRPC + protobuf
+protobuf==6.33.0
+grpcio==1.75.1
+grpcio-tools==1.75.1

@@ -1,0 +1,23 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.11-management
+    container_name: rabbitmq-mqtt
+    restart: unless-stopped
+    ports:
+      - "5672:5672"    # AMQP
+      - "15672:15672"  # Management UI
+      - "1883:1883"    # MQTT (plain TCP)
+      - "15675:15675"  # Web MQTT (websocket)
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - ./rabbitmq/data:/var/lib/rabbitmq
+      - ./rabbitmq/log:/var/log/rabbitmq
+    # Enable needed plugins before starting the server
+    command: ["bash", "-lc", "rabbitmq-plugins enable --offline rabbitmq_management rabbitmq_mqtt rabbitmq_web_mqtt && rabbitmq-server"]
+    healthcheck:
+      test: ["CMD-SHELL", "rabbitmq-diagnostics -q ping || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5

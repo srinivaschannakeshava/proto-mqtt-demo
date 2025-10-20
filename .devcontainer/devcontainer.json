@@ -1,0 +1,19 @@
+{
+  "name": "proto-mqtt-demo (Ubuntu)",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,consistency=cached",
+  "postCreateCommand": "bash .devcontainer/postCreate.sh",
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-python.python",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}
